@@ -1,7 +1,8 @@
 # smallsh
 
-[Requirements](https://github.com/powdrild/smallsh/blob/main/requriements.md
-)
+[Requirements](https://github.com/powdrild/smallsh/blob/main/requriements.md)
+
+
 To create an executable file:
 
 1. Navigate to the file location where "smallsh.c" and "smallsh.h" are stored.
