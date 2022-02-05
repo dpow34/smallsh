@@ -119,19 +119,18 @@ background pid is 4941
 : kill -15 4941
 background pid 4941 is done: terminated by signal 15
 : pwd
-/nfs/stak/faculty/b/brewsteb/CS344/prog3
+/nfs/stak/users/powdrild/CS344/prog3
 : cd
 : pwd
-/nfs/stak/faculty/b/brewsteb
+/nfs/stak/users/powdrild
 : cd CS344
 : pwd
-/nfs/stak/faculty/b/brewsteb/CS344
+/nfs/stak/users/powdrild/CS344
 : echo 4867
 4867
 : echo $$
 4867
-: ^C
-: ^Z
+: ^C^Z
 Entering foreground-only mode (& is now ignored)
 : date
 Mon Jan  2 11:24:33 PST 2017
@@ -148,56 +147,3 @@ background pid is 4963
 Mon Jan 2 11:24:39 PST 2017
 : exit $
 ```
-
-### Grading Method
-In addition to your shell needed to replicate the above example in functionality, this assignment is provided with the actual [grading test script](/p3testscript) that will be used to assign your program a grade. Your program must function with this grading script, as follows. To run it, place it in the same directory as yoru compiled shell, cmod it (`chmod +x ./p3testscript`) and run this command from a bash prompt:
-
-`$ p3testscript 2>&1`
-
-or
-
-`$ p3testscript 2>&1 | more`
-
-or
-
-`$ p3testscript > mytestresults 2>&1`
-
-Don’t worry if the spacing, indentation, or look of the output of the script is different than when you run it interactively: that won’t affect your grade. The script may add extra colons at the beginning of lines or do other weird things, like put output about terminating processes further down the script than you intended. Use the script to prepare for your grade, as this is how it's being earned.
-
-Note that as an extra challenge, no "clean run" script is provided for Program 3: you'll need to interpret the results of your program yourself.
-
-If your program does not work with the grading script, and you instead request that we grade your script by hand, we will have to apply a 50% reduction to your final score. Make sure you work with the grading script on our class server from the very beginning!
-
-### What to submit
-
-Please submit a single zip file of your program code, which may be in as many different files as you want. Also, inside that zip file, you must provide a file called readme.txt that contains instructions on HOW to compile your code; you may compile your code however you wish. DO NOT include a copy of the testing script.
-
-The graders will compile your code according to your exact specifications. They will make a reasonable effort to make it work, but if it doesn’t compile, you’ll receive a zero on this assignment.
-
-## Hints
-
-It is recommended that you program the built-in commands first, before tackling the fork(), exec(), waitpid() specifications.
-
-Don't forget to use fflush(stdout), as described above!
-
-As stated above, make sure you work with the grading script on our class server from the very beginning - don't leave this to the end!
-
-### Re-Entrancy
-
-A topic we haven't covered much is the concept of [re-entrancy](https://en.wikipedia.org/wiki/Reentrancy_(computing)). This is important when we consider that signal handlers cause jumps in execution that cause problems with certain functions.
-
-For our purposes, note that the printf() family of functions is NOT re-entrant. In your signal handlers, when outputting text, you must use other output functions!
-
-### Where to program
-
-Finally, I HIGHLY recommend that you develop this program directly on our course server. Doing so will prevent you from having problems transferring the program back and forth, and having compatibility problems.
-
-If you do see `^M` characters all over your files, try this command:
-
-`$ dos2unix bustedFile`
-
-## Grading
-
-Once the program is compiled, according to your specifications, your shell will be executed to run a few sample commands against (`ls`, `status`, `exit`, in that order). If the program does not successfully work on those commands, it will receive a zero. If it works, it will have the p3testscript program ran against it (as detailed above) for final grading. Points will be assigned according to the test script.
-
-170 points are available in the test script, while the final 10 points will be based on your style, readability, and commenting. Comment well, often, and verbosely: we want to see that you are telling us WHY you are doing things, in addition to telling us WHAT you are doing.
